@@ -662,36 +662,77 @@
             </section>
 
             <!-- Instalación -->
+
             <section id="instalacion">
                 <h2><i class="fas fa-download"></i> <span data-i18n="install.title">Installation</span></h2>
+                
+                <div class="callout success">
+                    <div class="callout-title"><i class="fas fa-check-circle"></i> <span data-i18n="install.availableTitle"> Available Now</span></div>
+                    <p data-i18n="install.availableDesc">MagmaLib v2.1 is now available on JitPack. Add the dependency to your project and start building Folia-ready plugins today!</p>
+                </div>
+
                 <div class="callout">
                     <div class="callout-title"><i class="fas fa-info-circle"></i> <span data-i18n="install.requirementsTitle">Requirements</span></div>
-                    <p data-i18n="install.requirements">Paper 1.18+ or Folia (recommended 1.20+). Java 17 or higher.</p>
+                    <p data-i18n="install.requirements">Paper 1.20+ or Folia 1.20+ (recommended). Java 17 or higher.</p>
                 </div>
-
-                <div class="callout warning">
-                    <div class="callout-title"><i class="fas fa-clock"></i> <span data-i18n="install.comingSoonTitle">Coming Soon</span></div>
-                    <p data-i18n="install.comingSoon">MagmaLib v2.1 will be available on JitPack soon. In the meantime, you can use the source code directly by copying <code>MagmaLib.java</code> into your project.</p>
-                </div>
-
 
                 <h3>Maven</h3>
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> <span data-i18n="code.copy">Copy</span></button>
-                    <pre><code class="language-xml">&lt;!-- Coming soon on JitPack --&gt;</code></pre>
+                    <pre><code class="language-xml">
+            &lt;repositories&gt;
+                &lt;repository&gt;
+                    &lt;id&gt;jitpack.io&lt;/id&gt;
+                    &lt;url&gt;https://jitpack.io&lt;/url&gt;
+                &lt;/repository&gt;
+            &lt;/repositories&gt;
+
+            &lt;dependencies&gt;
+                &lt;dependency&gt;
+                    &lt;groupId&gt;com.github.MagmaEnginers&lt;/groupId&gt;
+                    &lt;artifactId&gt;MagmaLib&lt;/artifactId&gt;
+                    &lt;version&gt;2.1.0&lt;/version&gt;
+                    &lt;scope&gt;provided&lt;/scope&gt;
+                &lt;/dependency&gt;
+            &lt;/dependencies&gt;</code></pre>
                 </div>
 
                 <h3>Gradle (Kotlin DSL)</h3>
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> <span data-i18n="code.copy">Copy</span></button>
-                    <pre><code class="language-kotlin">// Coming soon on JitPack</code></pre>
+                    <pre><code class="language-kotlin">repositories {
+                maven("https://jitpack.io")
+            }
+
+            dependencies {
+                compileOnly("com.github.MagmaEnginers:MagmaLib:2.1.0")
+            }</code></pre>
                 </div>
 
                 <h3>Gradle (Groovy)</h3>
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)"><i class="fas fa-copy"></i> <span data-i18n="code.copy">Copy</span></button>
-                    <pre><code class="language-groovy">// Coming soon on JitPack</code></pre>
+                    <pre><code class="language-groovy">repositories {
+                maven { url 'https://jitpack.io' }
+            }
+
+            dependencies {
+                compileOnly 'com.github.MagmaEnginers:MagmaLib:2.1.0'
+            }</code></pre>
                 </div>
+
+                <div class="callout warning">
+                    <div class="callout-title"><i class="fas fa-triangle-exclamation"></i> <span data-i18n="install.authTitle"> Authentication Note</span></div>
+                    <p data-i18n="install.authDesc">JitPack may require authentication for rate limiting. If you encounter issues, add credentials to your <code>~/.m2/settings.xml</code> or <code>gradle.properties</code>. See <a href="#faq">FAQ</a> for details.</p>
+                </div>
+
+                <h3 data-i18n="install.sourceTitle">📁 Alternative: Copy Source</h3>
+                <p data-i18n="install.sourceDesc">If you prefer not to use external dependencies:</p>
+                <ol>
+                    <li data-i18n="install.sourceStep1">Download <a href="https://raw.githubusercontent.com/MagmaEnginers/MagmaLib/main/src/main/java/io/github/magmaenginers/magmalib/MagmaLib.java" target="_blank"><code>MagmaLib.java</code></a></li>
+                    <li data-i18n="install.sourceStep2">Copy it to your project: <code>src/main/java/your/package/MagmaLib.java</code></li>
+                    <li data-i18n="install.sourceStep3">Done! No external dependencies required.</li>
+                </ol>
             </section>
 
             <!-- Inicio Rápido -->
@@ -1128,7 +1169,38 @@ for (Entity entity : entities) {
                         <p style="font-size: 0.9rem; margin-top: var(--spacing-sm);" data-i18n="faq.a6d">Coming soon: <code>jitpack.io/#MagmaEnginers/MagmaLib</code></p>
                     </div>
                 </div>
+
+                <div class="method-card">
+                    <h4><i class="fas fa-key"></i> <span data-i18n="faq.authTitle">Do I need authentication for JitPack?</span></h4>
+                    <p style="font-size: 0.9rem;" data-i18n="faq.authDesc">JitPack may require authentication to avoid rate limiting. Follow these steps:</p>
+                    
+                    <p style="font-size: 0.9rem; margin-top: var(--spacing-sm);" data-i18n="faq.authMaven">
+                        <strong>Maven:</strong> Add to <code>~/.m2/settings.xml</code>:
+                    </p>
+                    <div class="code-block" style="margin: var(--spacing-sm) 0;">
+                        <pre><code class="language-xml">&lt;servers&gt;
+                &lt;server&gt;
+                    &lt;id&gt;jitpack.io&lt;/id&gt;
+                    &lt;username&gt;YOUR_GITHUB_USERNAME&lt;/username&gt;
+                    &lt;password&gt;ghp_YOUR_TOKEN&lt;/password&gt;
+                &lt;/server&gt;
+                &lt;/servers&gt;</code></pre>
+                    </div>
+                    
+                    <p style="font-size: 0.9rem;" data-i18n="faq.authGradle">
+                        <strong>Gradle:</strong> Add to <code>~/.gradle/gradle.properties</code>:
+                    </p>
+                    <div class="code-block" style="margin: var(--spacing-sm) 0;">
+                        <pre><code class="language-properties">gpr.user=YOUR_GITHUB_USERNAME
+                gpr.key=ghp_YOUR_TOKEN</code></pre>
+                    </div>
+                    
+                    <p style="font-size: 0.9rem; margin-top: var(--spacing-sm);" data-i18n="faq.authToken">
+                        Create a token at <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings</a> with scope <code>read:packages</code>.
+                    </p>
+                </div>
             </section>
+            
 
         </div>
 
@@ -1188,12 +1260,27 @@ for (Entity entity : entities) {
             "hero.feature2Title": "Context propagation:",
             "hero.feature3Title": "100% backward compatible",
 
-            // Installation
+            // Instalacion 
             "install.title": "Instalación",
+            "install.availableTitle": " Disponible Ahora",
             "install.requirementsTitle": "Requisitos",
             "install.requirements": "Paper 1.18+ o Folia (recomendado 1.20+). Java 17 o superior.",
-            "install.comingSoonTitle": "Próximamente",
-            "install.comingSoon": "MagmaLib v2.1 estará disponible en JitPack muy pronto. Mientras tanto, puedes usar el código fuente directamente copiando <code>MagmaLib.java</code> en tu proyecto.",
+            "install.availableDesc": "MagmaLib v2.1 ya está disponible en JitPack. ¡Añade la dependencia a tu proyecto y comienza a crear plugins compatibles con Folia hoy mismo!",
+            "install.authTitle": " Nota de Autenticación",
+            "install.authDesc": "JitPack puede requerir autenticación para limitar peticiones. Si encuentras problemas, añade credenciales a tu <code>~/.m2/settings.xml</code> o <code>gradle.properties</code>. Ver <a href=\"#faq\">FAQ</a> para detalles.",
+            "install.sourceTitle": "📁 Alternativa: Copiar Fuente",
+            "install.sourceDesc": "Si prefieres no usar dependencias externas:",
+            "install.sourceStep1": "Descarga <a href=\"https://raw.githubusercontent.com/MagmaEnginers/MagmaLib/main/src/main/java/io/github/magmaenginers/magmalib/MagmaLib.java\" target=\"_blank\"><code>MagmaLib.java</code></a>",
+            "install.sourceStep2": "Cópialo en tu proyecto: <code>src/main/java/tu/paquete/MagmaLib.java</code>",
+            "install.sourceStep3": "¡Listo! Sin dependencias externas requeridas.",
+            
+            // FAQ - Nueva pregunta sobre autenticación JitPack
+            "faq.authTitle": "¿Necesito autenticación para JitPack?",
+            "faq.authDesc": "JitPack puede requerir autenticación para evitar límites de tasa (rate limiting). Sigue estos pasos:",
+            "faq.authMaven": "<strong>Maven:</strong> Añade a <code>~/.m2/settings.xml</code>:",
+            "faq.authGradle": "<strong>Gradle:</strong> Añade a <code>~/.gradle/gradle.properties</code>:",
+            "faq.authToken": "Crea un token en <a href=\"https://github.com/settings/tokens\" target=\"_blank\">GitHub Settings</a> con scope <code>read:packages</code>.",
+
 
             // Code
             "code.copy": "Copiar",
@@ -1364,8 +1451,22 @@ for (Entity entity : entities) {
             "install.title": "Installation",
             "install.requirementsTitle": "Requirements",
             "install.requirements": "Paper 1.18+ or Folia (recommended 1.20+). Java 17 or higher.",
-            "install.comingSoonTitle": "Coming Soon",
-            "install.comingSoon": "MagmaLib v2.1 will be available on JitPack soon. In the meantime, you can use the source code directly by copying <code>MagmaLib.java</code> into your project.",
+            "install.availableTitle": " Available Now",
+            "install.availableDesc": "MagmaLib v2.1 is now available on JitPack. Add the dependency to your project and start building Folia-ready plugins today!",
+            "install.authTitle": " Authentication Note",
+            "install.authDesc": "JitPack may require authentication for rate limiting. If you encounter issues, add credentials to your <code>~/.m2/settings.xml</code> or <code>gradle.properties</code>. See <a href=\"#faq\">FAQ</a> for details.",
+            "install.sourceTitle": "📁 Alternative: Copy Source",
+            "install.sourceDesc": "If you prefer not to use external dependencies:",
+            "install.sourceStep1": "Download <a href=\"https://raw.githubusercontent.com/MagmaEnginers/MagmaLib/main/src/main/java/io/github/magmaenginers/magmalib/MagmaLib.java\" target=\"_blank\"><code>MagmaLib.java</code></a>",
+            "install.sourceStep2": "Copy it to your project: <code>src/main/java/your/package/MagmaLib.java</code>",
+            "install.sourceStep3": "Done! No external dependencies required.",
+    
+            // FAQ 
+            "faq.authTitle": "Do I need authentication for JitPack?",
+            "faq.authDesc": "JitPack may require authentication to avoid rate limiting. Follow these steps:",
+            "faq.authMaven": "<strong>Maven:</strong> Add to <code>~/.m2/settings.xml</code>:",
+            "faq.authGradle": "<strong>Gradle:</strong> Add to <code>~/.gradle/gradle.properties</code>:",
+            "faq.authToken": "Create a token at <a href=\"https://github.com/settings/tokens\" target=\"_blank\">GitHub Settings</a> with scope <code>read:packages</code>.",
 
             // Code
             "code.copy": "Copy",
